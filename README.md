@@ -37,7 +37,7 @@ A lightweight collaborative rich-text editor built with React, TypeScript, Vite,
 
 1. Create an empty GitHub repository, then initialize this folder, commit its contents, and push the `main` branch.
 2. On GitHub, open **Settings > Pages** and set **Source** to **GitHub Actions**.
-3. In **Settings > Secrets and variables > Actions**, add `VITE_SUPABASE_URL` and `VITE_SUPABASE_ANON_KEY` as repository secrets or variables. Add the optional demo-account values only if you want the one-click demo buttons enabled.
+3. In **Settings > Secrets and variables > Actions**, either add one repository secret named `SUPABASE_DEMO` containing the complete contents of the local `.env`, or add `VITE_SUPABASE_URL` and `VITE_SUPABASE_ANON_KEY` as separate repository secrets or variables. Add demo-account values only if you want the one-click demo buttons enabled.
 4. Push to `main` or run the **Deploy GitHub Pages** workflow manually from the repository's **Actions** tab.
 5. GitHub publishes the site at `https://<github-user>.github.io/<repository-name>/`. Add this URL to Supabase **Authentication > URL Configuration** as the Site URL and an allowed redirect URL.
 
