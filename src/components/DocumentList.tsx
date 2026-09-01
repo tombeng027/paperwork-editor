@@ -1,0 +1,8 @@
+import { useState } from 'react'
+import type { Document } from '../types'
+
+interface DocumentListProps { documents: Document[]; currentUserId: string; selectedId?: string; onSelect: (document: Document) => void }
+export function DocumentList({ documents, currentUserId, selectedId, onSelect }: DocumentListProps) {
+  const [tab, setTab] = useState<'mine' | 'shared'>('mine'); const visible = documents.filter((document) => tab === 'mine' ? document.owner_id === currentUserId : document.owner_id !== currentUserId)
+  return <div><div className="mb-3 flex border-b border-stone-200 font-sans text-xs"><button onClick={() => setTab('mine')} className={`px-2 py-2 ${tab === 'mine' ? 'border-b-2 border-emerald-800 font-bold text-emerald-900' : 'text-stone-500'}`}>My documents</button><button onClick={() => setTab('shared')} className={`px-2 py-2 ${tab === 'shared' ? 'border-b-2 border-emerald-800 font-bold text-emerald-900' : 'text-stone-500'}`}>Shared with me</button></div>{visible.length === 0 ? <p className="font-sans text-sm text-stone-500">No documents here yet.</p> : <ul className="space-y-1">{visible.map((document) => <li key={document.id}><button onClick={() => onSelect(document)} className={`w-full rounded px-3 py-2 text-left hover:bg-stone-100 ${selectedId === document.id ? 'bg-emerald-50' : ''}`}><span className="block truncate text-sm font-semibold">{document.title}</span><span className={`mt-2 inline-flex rounded px-2 py-1 font-sans text-xs font-bold ${document.owner_id === currentUserId ? 'bg-amber-100 text-amber-800' : 'bg-sky-100 text-sky-800'}`}>{document.owner_id === currentUserId ? 'You own this' : 'Shared with you'}</span></button></li>)}</ul>}</div>
+}

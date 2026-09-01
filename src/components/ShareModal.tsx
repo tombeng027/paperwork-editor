@@ -1,0 +1,11 @@
+import { useState } from 'react'
+import { supabase } from '../lib/supabase'
+import type { Profile } from '../types'
+
+interface ShareModalProps { open: boolean; documentId: string; onClose: () => void }
+export function ShareModal({ open, documentId, onClose }: ShareModalProps) {
+  const [email, setEmail] = useState(''); const [status, setStatus] = useState(''); const [loading, setLoading] = useState(false)
+  if (!open) return null
+  const share = async (event: React.FormEvent) => { event.preventDefault(); setLoading(true); setStatus(''); const { data: profile, error: profileError } = await supabase.from('profiles').select('id, email').eq('email', email.toLowerCase()).maybeSingle<Profile>(); if (profileError || !profile) { setStatus(profileError?.message ?? 'No profile exists for that email.'); setLoading(false); return }; const { error } = await supabase.from('document_access').upsert({ document_id: documentId, user_id: profile.id }); setStatus(error?.message ?? `Access granted to ${profile.email}.`); setLoading(false) }
+  return <div role="dialog" aria-modal="true" className="fixed inset-0 grid place-items-center bg-black/30 p-4"><form onSubmit={share} className="w-full max-w-md rounded-lg bg-white p-6 shadow-xl"><h2 className="text-xl font-bold">Share document</h2><p className="mt-1 font-sans text-sm text-stone-600">Grant editing access to a registered collaborator.</p><label className="mt-5 block font-sans text-sm font-medium">Collaborator email<input autoFocus type="email" required value={email} onChange={(event) => setEmail(event.target.value)} className="mt-1 w-full rounded border border-stone-300 px-3 py-2" /></label>{status && <p role="status" className="mt-3 font-sans text-sm text-stone-600">{status}</p>}<div className="mt-5 flex justify-end gap-2"><button type="button" onClick={onClose} className="rounded px-3 py-2 font-sans text-sm">Cancel</button><button disabled={loading} className="rounded bg-emerald-800 px-3 py-2 font-sans text-sm font-semibold text-white disabled:opacity-60">{loading ? 'Checking...' : 'Grant access'}</button></div></form></div>
+}
