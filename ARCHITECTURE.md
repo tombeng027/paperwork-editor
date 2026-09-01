@@ -13,7 +13,7 @@ Supabase provides backend persistence and identity:
 - Supabase Storage holds private imported-file attachments.
 - Postgres Row-Level Security (RLS) enforces document access.
 
-The frontend is deployable to Vercel. A deployment requires `VITE_SUPABASE_URL` and `VITE_SUPABASE_ANON_KEY` as Vercel environment variables, plus Supabase Auth site and redirect URLs configured for the deployed domain.
+The frontend is deployed through GitHub Pages. The GitHub Actions workflow injects Supabase configuration at build time and builds Vite with the repository base path. Supabase Auth must allow the deployed GitHub Pages URL in its Site URL and redirect URL configuration.
 
 ## Core Security Model: Row-Level Security
 

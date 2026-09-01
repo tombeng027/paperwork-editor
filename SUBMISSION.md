@@ -2,7 +2,7 @@
 
 ## Deployment
 
-- Live deployment URL: [Insert Deployment Link]
+- Live deployment URL: https://tombeng027.github.io/paperwork-editor/
 - Loom walkthrough video: [Insert Video URL Placeholder]
 - Google Drive submission folder: [Insert Google Drive Folder Link]
 - Deployment target: GitHub Pages, built and deployed by `.github/workflows/deploy-pages.yml`.
@@ -45,7 +45,7 @@ There is no separate `tests/` directory: parser tests live beside the utility th
 | Alice | `alice@test.com` | `password123` |
 | Bob | `bob@test.com` | `password123` |
 
-These are development-only demo credentials. Create them in Supabase Authentication with the stated password and keep production credentials out of source control.
+These are development-only demo credentials. Before sharing this submission, verify the deployed `SUPABASE_DEMO` GitHub secret and the two Supabase Auth users use the stated password; do not publish personal credentials or production accounts.
 
 ## Feature Matrix
 
