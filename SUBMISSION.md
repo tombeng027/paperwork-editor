@@ -2,6 +2,7 @@
 
 ## Deployment
 
+- Source repository: https://github.com/tombeng027/paperwork-editor
 - Live deployment URL: https://tombeng027.github.io/paperwork-editor/
 - Walkthrough video: https://drive.google.com/drive/folders/1Czgk8nCFVjObHRuSJMefxeYhb8iVJVmO?usp=sharing
 - Google Drive submission folder: https://drive.google.com/drive/folders/1Czgk8nCFVjObHRuSJMefxeYhb8iVJVmO?usp=sharing
