@@ -3,8 +3,8 @@
 ## Deployment
 
 - Live deployment URL: https://tombeng027.github.io/paperwork-editor/
-- Loom walkthrough video: [Insert Video URL Placeholder]
-- Google Drive submission folder: [Insert Google Drive Folder Link]
+- Walkthrough video: https://drive.google.com/drive/folders/1Czgk8nCFVjObHRuSJMefxeYhb8iVJVmO?usp=sharing
+- Google Drive submission folder: https://drive.google.com/drive/folders/1Czgk8nCFVjObHRuSJMefxeYhb8iVJVmO?usp=sharing
 - Deployment target: GitHub Pages, built and deployed by `.github/workflows/deploy-pages.yml`.
 
 ## Local Setup
