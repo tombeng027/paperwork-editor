@@ -59,3 +59,7 @@ These are development-only demo credentials. Before sharing this submission, ver
 - [x] Automated testing: Vitest integration/parser coverage plus an opt-in Playwright document lifecycle suite.
 - [x] Open-document tabs: closeable tabs with an empty dashboard state when no document is open.
 - [ ] Real-time Collaborative Cursors: intentionally deprioritized and documented in [ARCHITECTURE.md](ARCHITECTURE.md).
+
+## QA Notes
+
+The release checks are `npm run lint`, `npm test`, `npm run test:e2e`, and `npm run build`. The Playwright lifecycle test is intentionally skipped until `E2E_EMAIL` and `E2E_PASSWORD` are provided for a dedicated non-reviewer Supabase account. Vite emits a non-blocking bundle-size advisory for the Tiptap editor bundle; code splitting is a post-submission optimization.

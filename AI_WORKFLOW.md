@@ -25,6 +25,6 @@ AI accelerated delivery in the repetitive but high-context parts of the build:
 
 ## Verification & Testing Strategy
 
-Automated verification uses Vitest for file ingestion behavior. The parser tests cover Markdown heading conversion, inline formatting, list conversion, raw text conversion, and filename extension stripping. `npm run build` runs TypeScript compilation and a Vite production build.
+Automated verification uses Vitest for file ingestion and component integration behavior. The suite covers Markdown heading conversion, inline formatting, list conversion, filename extension stripping, document creation, title persistence, toolbar commands, and debounced HTML saves. Playwright provides a real-browser document lifecycle test that creates, renames, formats, saves, and reloads a document using a dedicated QA account. `npm run build` runs TypeScript compilation and a Vite production build.
 
 Manual verification uses separate Alice and Bob browser sessions. The workflow verifies document creation, formatting persistence, sharing, collaborator edits, owner-only deletion, private attachment upload, and RLS enforcement. The demo accounts are `alice@test.com` and `bob@test.com`; their Auth users must be created in Supabase before the profile seed migration is run.
