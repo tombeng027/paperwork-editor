@@ -38,6 +38,7 @@ npm run build
 - `supabase/migrations/` - Schema, RLS, Storage, and demo-profile migrations.
 - `supabase/repairs/` - One-time correction script for pre-existing databases.
 - Root Markdown files - architecture, AI workflow, setup instructions, and submission notes.
+- `REVIEWER_START_HERE.md` - concise live-demo links, credentials, and reviewer test workflow.
 - `WALKTHROUGH_VIDEO_URL.txt` - final video URL handoff artifact.
 
 There is no separate `tests/` directory: parser tests live beside the utility they verify in `src/utils/`, which keeps the small codebase easy to navigate.
