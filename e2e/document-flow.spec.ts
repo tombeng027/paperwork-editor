@@ -1,0 +1,56 @@
+import { expect, test } from '@playwright/test'
+
+const email = process.env.E2E_EMAIL
+const password = process.env.E2E_PASSWORD
+
+test.describe('Document lifecycle', () => {
+  test.skip(!email || !password, 'Set E2E_EMAIL and E2E_PASSWORD for a dedicated Supabase test account before running this data-mutating suite.')
+
+  test('creates, renames, formats, saves, and reloads a document', async ({ page }) => {
+    const title = `Q3 Strategy Spec ${Date.now()}`
+    await page.goto('/')
+    await page.getByRole('textbox', { name: 'Email' }).fill(email!)
+    await page.getByRole('textbox', { name: 'Password' }).fill(password!)
+    await page.getByRole('button', { name: 'Sign in' }).click()
+    await expect(page.getByRole('button', { name: 'New document' })).toBeVisible()
+    await page.getByRole('button', { name: 'New document' }).click()
+    await page.getByRole('textbox', { name: 'Document title' }).fill(title)
+    await page.getByRole('textbox', { name: 'Document title' }).blur()
+
+    const editor = page.getByRole('textbox', { name: 'Document editor' })
+    await editor.click()
+    await page.keyboard.press('Control+Alt+1')
+    await page.keyboard.type('Q3 strategy')
+    await page.keyboard.press('Enter')
+    await page.keyboard.press('Control+Alt+0')
+    await page.getByRole('button', { name: 'Bold' }).click()
+    await page.keyboard.type('Priority')
+    await page.getByRole('button', { name: 'Bold' }).click()
+    await page.keyboard.press('Enter')
+    await page.getByRole('button', { name: 'Italic' }).click()
+    await page.keyboard.type('Context')
+    await page.getByRole('button', { name: 'Italic' }).click()
+    await page.keyboard.press('Enter')
+    await page.getByRole('button', { name: 'Underline' }).click()
+    await page.keyboard.type('Action')
+    await page.getByRole('button', { name: 'Underline' }).click()
+    await page.keyboard.press('Enter')
+    await page.getByRole('button', { name: 'Bulleted list' }).click()
+    await page.keyboard.type('Bullet item')
+    await page.keyboard.press('Enter')
+    await page.getByRole('button', { name: 'Bulleted list' }).click()
+    await page.getByRole('button', { name: 'Numbered list' }).click()
+    await page.keyboard.type('Ordered item')
+    await page.keyboard.press('Enter')
+    await page.getByRole('button', { name: 'Numbered list' }).click()
+    await expect(page.getByTestId('save-status')).toHaveText('Saved to database', { timeout: 5000 })
+    await page.reload()
+    await expect(page.getByRole('textbox', { name: 'Document title' })).toHaveValue(title)
+    await expect(page.getByRole('heading', { name: 'Q3 strategy' })).toBeVisible()
+    await expect(editor.locator('strong')).toBeVisible()
+    await expect(editor.locator('em')).toBeVisible()
+    await expect(editor.locator('u')).toBeVisible()
+    await expect(editor.locator('ul > li')).toHaveText('Bullet item')
+    await expect(editor.locator('ol > li')).toHaveText('Ordered item')
+  })
+})

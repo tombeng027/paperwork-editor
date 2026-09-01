@@ -22,8 +22,11 @@ Quality gates:
 
 ```powershell
 npm test
+npm run test:e2e
 npm run build
 ```
+
+`test:e2e` uses a dedicated account supplied through `E2E_EMAIL` and `E2E_PASSWORD`; it skips cleanly when those variables are not provided to avoid modifying demo data.
 
 ## Repository Structure
 
@@ -53,6 +56,6 @@ These are development-only demo credentials. Before sharing this submission, ver
 - [x] Auto-save & LocalStorage Persistence: 800 ms debounced database saves with a local offline fallback.
 - [x] File Ingestion: `.md` and `.txt` import into the active draft and private attachments in Supabase Storage.
 - [x] Explicit Access Sharing & RLS Security: owner-only sharing management and owner-or-collaborator database authorization.
-- [x] Vitest Unit Testing for Parser Logic.
+- [x] Automated testing: Vitest integration/parser coverage plus an opt-in Playwright document lifecycle suite.
 - [x] Open-document tabs: closeable tabs with an empty dashboard state when no document is open.
 - [ ] Real-time Collaborative Cursors: intentionally deprioritized and documented in [ARCHITECTURE.md](ARCHITECTURE.md).

@@ -57,7 +57,17 @@ Run the production type-check and build:
 npm run build
 ```
 
-Expected result: both commands exit successfully and Vitest reports two passing tests.
+Expected result: both commands exit successfully and Vitest reports five passing tests.
+
+Run the opt-in browser lifecycle test against a dedicated Supabase test account:
+
+```powershell
+$env:E2E_EMAIL = 'qa-account@example.com'
+$env:E2E_PASSWORD = 'a-test-password'
+npm run test:e2e
+```
+
+Without these variables, Playwright exits successfully and skips the data-mutating lifecycle test. This prevents routine local or CI checks from adding documents to reviewer demo accounts.
 
 ## End-to-End Test Workflow
 
